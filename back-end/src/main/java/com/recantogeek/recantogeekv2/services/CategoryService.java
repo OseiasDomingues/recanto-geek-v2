@@ -8,5 +8,5 @@ public interface CategoryService {
     
     List<CategoryModel> findAll();
     CategoryModel findById(Long id);
-    CategoryModel insert(CategoryModel category);
+    CategoryModel save(CategoryModel category);
 }

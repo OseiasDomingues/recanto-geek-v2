@@ -4,10 +4,12 @@ import com.recantogeek.recantogeekv2.models.ProductModel;
 import com.recantogeek.recantogeekv2.repositories.ProductRepository;
 import com.recantogeek.recantogeekv2.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -31,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductModel insert(ProductModel product) {
+    public ProductModel save(ProductModel product) {
         return productRepository.save(product);
     }
 }

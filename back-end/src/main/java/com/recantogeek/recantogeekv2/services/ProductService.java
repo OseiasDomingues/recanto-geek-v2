@@ -9,6 +9,6 @@ public interface ProductService {
     List<ProductModel> findAll();
     List<ProductModel> findByCategory(Long id);
     ProductModel findById(Long id);
-    ProductModel insert(ProductModel product);
+    ProductModel save(ProductModel product);
 
 }
