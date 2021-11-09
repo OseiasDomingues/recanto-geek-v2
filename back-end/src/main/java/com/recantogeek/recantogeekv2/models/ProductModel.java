@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -14,7 +15,9 @@ import java.util.Objects;
 @Setter
 @ToString
 @Table(name = "tb_Products")
-public class ProductModel {
+public class ProductModel implements Serializable {
+
+    private static final long serialVersionUID = -8558452091110804339L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +48,7 @@ public class ProductModel {
     private Integer quantity;
 
     @NotNull
-    @Column(name = "installments", nullable = false)
+    @Column(name = "installments", nullable = false, columnDefinition = "Decimal(10,2)")
     private Double installments;
 
     @NotNull

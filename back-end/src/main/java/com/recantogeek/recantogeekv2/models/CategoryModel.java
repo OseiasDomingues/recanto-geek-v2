@@ -1,8 +1,10 @@
 package com.recantogeek.recantogeekv2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +15,9 @@ import java.util.Objects;
 @Setter
 @ToString
 @Table(name = "tb_Category")
-public class CategoryModel {
+public class CategoryModel implements Serializable {
+
+    private static final long serialVersionUID = 3923364546705973780L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +27,9 @@ public class CategoryModel {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
+    @JsonIgnore
     private List<ProductModel> products = new ArrayList<>();
 
     public CategoryModel(Long id, String name) {

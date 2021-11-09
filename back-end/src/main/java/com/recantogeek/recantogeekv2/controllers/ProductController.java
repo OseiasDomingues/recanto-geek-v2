@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,7 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    ResponseEntity<ProductModel> insert(@RequestBody ProductModel product){
+    ResponseEntity<ProductModel> insert(@Valid @RequestBody ProductModel product){
         ProductModel newProduct = productService.save(product);
         return ResponseEntity.status(HttpStatus.OK).body(newProduct);
     }
