@@ -5,7 +5,6 @@ import com.recantogeek.recantogeekv2.repositories.ProductRepository;
 import com.recantogeek.recantogeekv2.services.ProductService;
 import com.recantogeek.recantogeekv2.services.exceptions.ObjNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +36,41 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductModel save(ProductModel product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public ProductModel update(ProductModel product, Long id) {
+        ProductModel productToBeUpdated = productRepository.getById(id);
+        ProductModel productUpdate = updateDate(product, productToBeUpdated);
+        return productRepository.save(productUpdate);
+    }
+
+    private ProductModel updateDate(ProductModel product, ProductModel productToBeUpdated) {
+        if (!product.getName().isBlank()) {
+            productToBeUpdated.setName(product.getName());
+        }
+        if (!product.getDescription().isBlank()) {
+            productToBeUpdated.setDescription(product.getDescription());
+        }
+        if (product.getCategory() != null) {
+            productToBeUpdated.setCategory(product.getCategory());
+        }
+        if (product.getQuantity() != null) {
+            productToBeUpdated.setQuantity(product.getQuantity());
+        }
+        if (product.getPrice() != null) {
+            productToBeUpdated.setPrice(product.getPrice());
+            productToBeUpdated.setInstallments(productToBeUpdated.calcInstallment());
+        }
+        if (product.getRating() != null) {
+            productToBeUpdated.setRating(product.getRating());
+        }
+
+        return productToBeUpdated;
+    }
+
+    @Override
+    public void delete(Long id) {
+
     }
 }

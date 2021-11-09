@@ -3,6 +3,7 @@ package com.recantogeek.recantogeekv2.mapper;
 import com.recantogeek.recantogeekv2.dto.NewProductDTO;
 import com.recantogeek.recantogeekv2.dto.OneProductDTO;
 import com.recantogeek.recantogeekv2.dto.ProductsListDTO;
+import com.recantogeek.recantogeekv2.dto.UpdateProductDTO;
 import com.recantogeek.recantogeekv2.models.ProductModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -21,4 +22,10 @@ public interface ProductMapper {
     @Mapping(target = "createdBy", expression = "java(productModel.formatDate())")
     @Mapping(target = "installments", expression = "java(productModel.calcInstallment())")
     ProductModel toObj(NewProductDTO newProductDTO);
+
+    @Mapping(target = "createdBy", ignore = true)
+    @Mapping(target = "installments", ignore = true)
+    ProductModel toUpdateObj(UpdateProductDTO updateProductDTO);
+
+
 }

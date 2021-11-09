@@ -30,26 +30,21 @@ public class ProductModel implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @NotBlank
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull
     @Column(name = "price", nullable = false)
     private Double price;
 
     @Column(name = "description", nullable = false)
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    @NotBlank
     @ToString.Exclude
     private String description;
 
-    @NotNull
     @Column(name = "rating", nullable = false)
     private Integer rating;
 
-    @NotNull
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
@@ -59,7 +54,6 @@ public class ProductModel implements Serializable {
     @Column(name = "installments",columnDefinition = "Decimal(10,2)")
     private Double installments;
 
-    @NotNull
     @JoinColumn(name = "category_id")
     @ManyToOne
     private CategoryModel category;

@@ -3,6 +3,7 @@ package com.recantogeek.recantogeekv2.controllers;
 import com.recantogeek.recantogeekv2.dto.NewProductDTO;
 import com.recantogeek.recantogeekv2.dto.OneProductDTO;
 import com.recantogeek.recantogeekv2.dto.ProductsListDTO;
+import com.recantogeek.recantogeekv2.dto.UpdateProductDTO;
 import com.recantogeek.recantogeekv2.mapper.ProductMapper;
 import com.recantogeek.recantogeekv2.models.ProductModel;
 import com.recantogeek.recantogeekv2.services.CategoryService;
@@ -58,7 +59,13 @@ public class ProductController {
     ResponseEntity<ProductModel> insert(@Valid @RequestBody NewProductDTO newProductDTO){
         ProductModel newObj = productMapper.toObj(newProductDTO);
         ProductModel newProduct = productService.save(newObj);
-        return ResponseEntity.status(HttpStatus.OK).body(newProduct);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
+    }
+    @PutMapping("/products/{id}")
+    ResponseEntity<ProductModel> update(@RequestBody UpdateProductDTO updateProductDTO, @PathVariable Long id){
+        ProductModel updateObj = productMapper.toUpdateObj(updateProductDTO);
+        ProductModel updatedProduct = productService.update(updateObj,id);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
     }
 
 }
