@@ -3,7 +3,9 @@ package com.recantogeek.recantogeekv2.services.impl;
 import com.recantogeek.recantogeekv2.models.ProductModel;
 import com.recantogeek.recantogeekv2.repositories.ProductRepository;
 import com.recantogeek.recantogeekv2.services.ProductService;
+import com.recantogeek.recantogeekv2.services.exceptions.ObjNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductModel findById(Long id) {
-        return productRepository.findById(id).orElseThrow(NullPointerException::new);
+        return productRepository.findById(id).orElseThrow(() -> new ObjNotFoundException(id));
     }
 
     @Override
