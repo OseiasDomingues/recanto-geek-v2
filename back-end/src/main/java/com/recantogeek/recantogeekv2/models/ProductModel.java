@@ -1,5 +1,6 @@
 package com.recantogeek.recantogeekv2.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.recantogeek.recantogeekv2.enums.RatingEnum;
 import lombok.*;
 
@@ -7,6 +8,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +23,7 @@ import java.util.Objects;
 public class ProductModel implements Serializable {
 
     private static final long serialVersionUID = -8558452091110804339L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +53,10 @@ public class ProductModel implements Serializable {
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @NotNull
-    @Column(name = "installments", nullable = false, columnDefinition = "Decimal(10,2)")
+    @Column(name = "createdBy")
+    private String createdBy;
+
+    @Column(name = "installments",columnDefinition = "Decimal(10,2)")
     private Double installments;
 
     @NotNull
@@ -63,11 +71,18 @@ public class ProductModel implements Serializable {
         this.description = description;
         this.rating = rating.getValue();
         this.quantity = quantity;
-        this.installments = calcInstallment();
         this.category = category;
+        installments = calcInstallment();
+        createdBy = formatDate();
     }
 
-    private Double calcInstallment() {
+    public String formatDate() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        return now.format(formatter);
+    }
+
+    public Double calcInstallment() {
         return (price < 30) ? price / 5 : price / 10;
     }
 
