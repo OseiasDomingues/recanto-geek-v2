@@ -8,9 +8,11 @@ import com.recantogeek.recantogeekv2.mapper.ProductMapper;
 import com.recantogeek.recantogeekv2.models.ProductModel;
 import com.recantogeek.recantogeekv2.services.CategoryService;
 import com.recantogeek.recantogeekv2.services.ProductService;
+import com.recantogeek.recantogeekv2.services.exceptions.FieldInvalidException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -56,7 +58,10 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    ResponseEntity<ProductModel> insert(@Valid @RequestBody NewProductDTO newProductDTO){
+    ResponseEntity<ProductModel> insert(@Valid @RequestBody NewProductDTO newProductDTO, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            throw new FieldInvalidException("Algum campo está invalido!");
+        }
         ProductModel newObj = productMapper.toObj(newProductDTO);
         ProductModel newProduct = productService.save(newObj);
         return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
@@ -66,6 +71,11 @@ public class ProductController {
         ProductModel updateObj = productMapper.toUpdateObj(updateProductDTO);
         ProductModel updatedProduct = productService.update(updateObj,id);
         return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
+    }
+    @DeleteMapping("/products/{id}")
+    ResponseEntity<Void> delete(@PathVariable Long id){
+        productService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

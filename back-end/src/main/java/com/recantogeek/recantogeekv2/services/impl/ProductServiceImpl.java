@@ -3,8 +3,12 @@ package com.recantogeek.recantogeekv2.services.impl;
 import com.recantogeek.recantogeekv2.models.ProductModel;
 import com.recantogeek.recantogeekv2.repositories.ProductRepository;
 import com.recantogeek.recantogeekv2.services.ProductService;
-import com.recantogeek.recantogeekv2.services.exceptions.ObjNotFoundException;
+import com.recantogeek.recantogeekv2.services.exceptions.DatabaseException;
+import com.recantogeek.recantogeekv2.services.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductModel findById(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new ObjNotFoundException(id));
+        return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     @Override
@@ -71,6 +75,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(Long id) {
-
+        try{
+        productRepository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new EntityNotFoundException(id);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }
     }
 }
