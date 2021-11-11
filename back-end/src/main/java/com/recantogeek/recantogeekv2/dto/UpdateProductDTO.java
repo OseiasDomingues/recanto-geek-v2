@@ -14,6 +14,7 @@ public class UpdateProductDTO {
     private Integer rating;
     private CategoryModel category;
     private Integer quantity;
+    private String imageURL;
 
 
 }

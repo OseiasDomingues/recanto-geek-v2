@@ -29,14 +29,14 @@ public class DummyData {
 
         categoryRepository.saveAll(Arrays.asList(c1,c2,c3,c4));
 
-        ProductModel p1 = new ProductModel(null, "Percy Jackson e os Olimpianos",36.43,"Nunquam fallere canis.", RatingEnum.FIVE,10,c4);
-        ProductModel p2 = new ProductModel(null, "Moleton - Dragon Ball",28.43,"Where is the cold cannibal?", RatingEnum.FOUR,20,c1);
-        ProductModel p3 = new ProductModel(null, "Funko - Madara",136.43,"Corsairs laugh with malaria!", RatingEnum.THREE,5,c3);
-        ProductModel p4 = new ProductModel(null, "Almofada",16.43,"Nunquam fallere canis.Golly gosh, yer not burning me without a passion!", RatingEnum.TWO,10,c2);
-        ProductModel p5 = new ProductModel(null, "Percy Jackson e os Olimpianos",36.43,"Nunquam fallere canis.", RatingEnum.FIVE,10,c4);
-        ProductModel p6 = new ProductModel(null, "Moleton - Dragon Ball",28.43,"Where is the cold cannibal?", RatingEnum.FOUR,20,c1);
-        ProductModel p7 = new ProductModel(null, "Funko - Madara",136.43,"Corsairs laugh with malaria!", RatingEnum.THREE,5,c3);
-        ProductModel p8 = new ProductModel(null, "Almofada",16.43,"Nunquam fallere canis.Golly gosh, yer not burning me without a passion!", RatingEnum.TWO,10,c2);
+        ProductModel p1 = new ProductModel(null, "Percy Jackson e os Olimpianos",36.43,"Nunquam fallere canis.", RatingEnum.FIVE,10,c4,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
+        ProductModel p2 = new ProductModel(null, "Moleton - Dragon Ball",28.43,"Where is the cold cannibal?", RatingEnum.FOUR,20,c1,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
+        ProductModel p3 = new ProductModel(null, "Funko - Madara",136.43,"Corsairs laugh with malaria!", RatingEnum.THREE,5,c3,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
+        ProductModel p4 = new ProductModel(null, "Almofada",16.43,"Nunquam fallere canis.Golly gosh, yer not burning me without a passion!", RatingEnum.TWO,10,c2,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
+        ProductModel p5 = new ProductModel(null, "Percy Jackson e os Olimpianos",36.43,"Nunquam fallere canis.", RatingEnum.FIVE,10,c4,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
+        ProductModel p6 = new ProductModel(null, "Moleton - Dragon Ball",28.43,"Where is the cold cannibal?", RatingEnum.FOUR,20,c1,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
+        ProductModel p7 = new ProductModel(null, "Funko - Madara",136.43,"Corsairs laugh with malaria!", RatingEnum.THREE,5,c3,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
+        ProductModel p8 = new ProductModel(null, "Almofada",16.43,"Nunquam fallere canis.Golly gosh, yer not burning me without a passion!", RatingEnum.TWO,10,c2,"https://cdn.nerdstore.com.br/wp-content/uploads/2021/08/moletom-marvel-comics.jpg");
 
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8));
     }

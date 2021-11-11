@@ -51,6 +51,9 @@ public class ProductModel implements Serializable {
     @Column(name = "createdBy")
     private String createdBy;
 
+    @Column(name = "imageURL")
+    private String imageURL;
+
     @Column(name = "installments",columnDefinition = "Decimal(10,2)")
     private Double installments;
 
@@ -58,7 +61,7 @@ public class ProductModel implements Serializable {
     @ManyToOne
     private CategoryModel category;
 
-    public ProductModel(Long id, String name, Double price, String description, RatingEnum rating, Integer quantity,CategoryModel category) {
+    public ProductModel(Long id, String name, Double price, String description, RatingEnum rating, Integer quantity,CategoryModel category,String imageURL) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -66,6 +69,7 @@ public class ProductModel implements Serializable {
         this.rating = rating.getValue();
         this.quantity = quantity;
         this.category = category;
+        this.imageURL = imageURL;
         installments = calcInstallment();
         createdBy = formatDate();
     }

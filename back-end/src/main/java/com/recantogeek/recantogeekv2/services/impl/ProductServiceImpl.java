@@ -56,6 +56,9 @@ public class ProductServiceImpl implements ProductService {
         if (!product.getDescription().isBlank()) {
             productToBeUpdated.setDescription(product.getDescription());
         }
+        if (!product.getImageURL().isBlank()) {
+            productToBeUpdated.setImageURL(product.getImageURL());
+        }
         if (product.getCategory() != null) {
             productToBeUpdated.setCategory(product.getCategory());
         }

@@ -22,6 +22,8 @@ public class NewProductDTO {
     private CategoryModel category;
     @NotNull
     private Integer quantity;
+    @NotBlank
+    private String imageURL;
 
 
 }

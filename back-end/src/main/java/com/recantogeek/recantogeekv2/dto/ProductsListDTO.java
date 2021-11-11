@@ -11,6 +11,7 @@ public class ProductsListDTO {
     private String name;
     private Double price;
     private Integer rating;
+    private String imageURL;
     private CategoryModel category;
 
 }

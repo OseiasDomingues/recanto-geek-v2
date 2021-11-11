@@ -13,6 +13,7 @@ public class OneProductDTO {
     private Integer rating;
     private Double installments;
     private CategoryModel category;
+    private String imageURL;
 
 
 }

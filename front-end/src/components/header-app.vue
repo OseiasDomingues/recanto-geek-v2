@@ -128,7 +128,7 @@ nav {
   align-items: center;  
 }
 .sub-nav .custom-btn:hover {
-  background-color: none;
+  background: none;
   color: #b9b9b9;  
 }
 </style>
